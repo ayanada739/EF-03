@@ -8,12 +8,13 @@ namespace Part_02_Inheritance
         static void Main(string[] args)
         {
             using CompanyDbContext dbContext = new CompanyDbContext();
+            #region  Inheritance Mapping 
             FullTimeEmployee fullTimeEmployee = new FullTimeEmployee()
             {
-                Name = "Aya" ,
-                Address = "Street-City" ,
-                Age = 25 ,
-                Salary = 20000 ,
+                Name = "Aya",
+                Address = "Street-City",
+                Age = 25,
+                Salary = 20000,
                 StartDate = DateTime.Now
             };
 
@@ -30,20 +31,21 @@ namespace Part_02_Inheritance
             //dbContext.PartTimeEmployees.Add(partTimeEmployee);
             ////Added Localy
 
-            //dbContext.SaveChanges(); //Add Remotly (DB)
+            dbContext.SaveChanges(); //Add Remotly (DB)
 
-            //var FTEmployee = from FTE in dbContext.FullTimeEmployees
-            //                 select FTE;
-            //var PTEmployee = from PTE in dbContext.PartTimeEmployees
-            //                 select PTE;
+            var Employee = from FTE in dbContext.Employees
+                           select FTE;
+            //var PTEmployee = from PTE in dbContext.Employees
+            //                select PTE;
 
-            //foreach (var employee in FTEmployee)
-            //    Console.WriteLine($"{employee.Name} :: {employee.Salary}");
+            foreach (var employee in Employee.OfType<FullTimeEmployee>())
+                Console.WriteLine($"{employee.Name} :: {employee.Salary}");
 
-            //Console.WriteLine("=======================");
-            //foreach (var employee in PTEmployee)
-            //    Console.WriteLine($"{employee.Name} :: {employee.HourRate}");
+            Console.WriteLine("=======================");
+            foreach (var employee in Employee.OfType<PartTimeEmployee>())
+                Console.WriteLine($"{employee.Name} :: {employee.HourRate}");
 
+            #endregion
 
 
         }

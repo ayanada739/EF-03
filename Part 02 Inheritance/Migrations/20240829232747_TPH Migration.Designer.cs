@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Part_02_Inheritance.DbContexts;
 
@@ -11,9 +12,10 @@ using Part_02_Inheritance.DbContexts;
 namespace Part_02_Inheritance.Migrations
 {
     [DbContext(typeof(CompanyDbContext))]
-    partial class CompanyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240829232747_TPH Migration")]
+    partial class TPHMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,7 @@ namespace Part_02_Inheritance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employee", (string)null);
+                    b.ToTable("Employee");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
                 });

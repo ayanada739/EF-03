@@ -10,23 +10,37 @@ namespace Part_02_Inheritance.DbContexts
 {
     internal class CompanyDbContext : DbContext
     {
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
           =>    
             optionsBuilder.UseSqlServer("Server = .; Database = Enterprise; Trusted_Connection = true");
 
-
-        public DbSet<PartTimeEmployee> PartTimeEmployees { get; set; }
-        public DbSet<FullTimeEmployee> FullTimeEmployees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        //public DbSet<PartTimeEmployee> PartTimeEmployees { get; set; }
+        //public DbSet<FullTimeEmployee> FullTimeEmployees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
+            //FluentAPIS
+            //TBH
             modelBuilder.Entity<FullTimeEmployee>()
-                .HasNoKey();
+                .HasBaseType<Employee>();
 
             modelBuilder.Entity<PartTimeEmployee>()
-                .HasNoKey();
+                .HasBaseType<Employee>();
+
+            //TPH=> Map Fulltime & Parttime Employee To One Table Employee
+            //Add New Column Nvarchar Namer Disciminator [Fulltime | Parttime]
+
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<FullTimeEmployee>()
+            //    .HasNoKey();
+
+            //modelBuilder.Entity<PartTimeEmployee>()
+             //   .HasNoKey();
+
+
         }
 
 
