@@ -67,20 +67,19 @@ namespace EF_03
 
             #endregion
 
-
-
-
             #region Lazy Loading
 
             //var Employee = (from E in dbContext.employees
-            //               where E.EmpId == 1
-            //               select E).FirstOrDefault();
-            //Console.WriteLine($" {Employee?.Name?? "Not Found"} :: { Employee?.Department?.Name?? "Not Found"}");
-            ////By Default Navigational Property Doesnit Load
+            //                where E.EmpId == 1
+            //                select E).FirstOrDefault();
+
+            //Console.WriteLine($" {Employee?.Name ?? "Not Found"} :: {Employee?.Department?.Name ?? "Not Found"}");
+ 
 
             //var Department = (from D in dbContext.departments
             //                  where D.DeptId == 30
             //                  select D).FirstOrDefault();
+
             //Console.WriteLine($"Department Name = {Department?.Name?? "Not Found"}" );
             // foreach (var Employee in Department.employees)
             // {

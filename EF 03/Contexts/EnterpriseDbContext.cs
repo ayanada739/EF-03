@@ -14,7 +14,7 @@ namespace EF_03.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
           =>   //optionsBuilder.UseSqlServer("Data source = . ; Initial Catalog = Enterprise; Integarted Security = true") //old
-            optionsBuilder.UseSqlServer("Server = .; Database = Enterprise; Trusted_Connection = true");
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server = .; Database = Enterprise; Trusted_Connection = true");
 
 
 

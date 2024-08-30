@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Entity_Framework_01.Entities
 {
-    internal class Department
+    public class Department
     {
         [Key]
         public int DeptId { get; set; } 
@@ -17,7 +17,7 @@ namespace Entity_Framework_01.Entities
         public string Name { get; set; }
         public DateTime DateOfCreation { get; set; }
 
-        public ICollection<Employee> employees { get; set; } = new HashSet<Employee>();
+        public virtual ICollection<Employee> employees { get; set; } = new HashSet<Employee>();
         //Navigation Property => Many 
 
 

@@ -35,7 +35,7 @@ namespace Entity_Framework_01.Entities
     #endregion
 
     #region  Mapping -Data Annotation
-    internal class Employee
+    public class Employee
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // (1,1)
@@ -68,7 +68,7 @@ namespace Entity_Framework_01.Entities
 
         [ForeignKey("Department")]
         public int? DepartmentDeptId { get; set; }
-        public Department Department { get; set; }
+        public virtual Department Department { get; set; }
         //Navigation Property => One 
     } 
     #endregion
