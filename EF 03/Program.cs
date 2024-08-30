@@ -1,4 +1,5 @@
 ﻿using EF_03.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace EF_03
 {
@@ -17,8 +18,9 @@ namespace EF_03
             //var Department = (from D in dbContext.departments
             //                  where D.DeptId == 30
             //                  select D).FirstOrDefault();
-            //Console.WriteLine($"Department Name = {Department?.Name?? "Not Found"}" 
-            #endregion);
+            //Console.WriteLine($"Department Name = {Department?.Name?? "Not Found"}" );
+            #endregion
+
 
             #region With Loading
             #region  Explicit Loading
@@ -44,19 +46,47 @@ namespace EF_03
             // } 
             #endregion
 
+            #region Egar Loading
+            //var Employee = (from E in dbContext.employees.Include(E => E.Department)
+            //               where E.EmpId == 1
+            //               select E).FirstOrDefault();
+
+            //Console.WriteLine($" {Employee?.Name?? "Not Found"} :: { Employee?.Department?.Name?? "Not Found"}");
+
+            //var Department = (from D in dbContext.departments.Include(D=>D.employees)
+            //                  where D.DeptId == 30
+            //                  select D).FirstOrDefault();
+
+            //Console.WriteLine($"Department Name = {Department?.Name ?? "Not Found"}");
+            //foreach (var Employee in Department.employees)
+            //{
+            //    Console.WriteLine(Employee.Name);
+            //}
+
+
+
+            #endregion
 
 
 
 
+            #region Lazy Loading
 
+            //var Employee = (from E in dbContext.employees
+            //               where E.EmpId == 1
+            //               select E).FirstOrDefault();
+            //Console.WriteLine($" {Employee?.Name?? "Not Found"} :: { Employee?.Department?.Name?? "Not Found"}");
+            ////By Default Navigational Property Doesnit Load
 
-
-
-
-
-
-            //Egar Loading
-            //Lazy Loading
+            //var Department = (from D in dbContext.departments
+            //                  where D.DeptId == 30
+            //                  select D).FirstOrDefault();
+            //Console.WriteLine($"Department Name = {Department?.Name?? "Not Found"}" );
+            // foreach (var Employee in Department.employees)
+            // {
+            //    Console.WriteLine(Employee.Name);
+            // } 
+            #endregion
 
             #endregion
 
