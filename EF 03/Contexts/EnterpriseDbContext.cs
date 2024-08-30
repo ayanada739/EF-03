@@ -1,4 +1,5 @@
 ﻿using EF_03.Entities;
+using Entity_Framework_01.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace EF_03.Contexts
         public DbSet<Student> Student { get; set; }
 
         public DbSet<Course> Course { get; set; }
+
+        public DbSet<Employee> employees { get; set; }
+        //Map Class To Table => Property InSide Class Dbcontext Must be Dbset Of Entity
+        // Name Of Table = Name Of Property
+
+        public DbSet<Department> departments { get; set; }
+        public DbSet<Projects> projects { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
